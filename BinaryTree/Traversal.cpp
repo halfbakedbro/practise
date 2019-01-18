@@ -67,12 +67,50 @@ void TraversalUtil::postOrderIterative(TreeNode *root) {
 	if (root == NULL)
 		return;
 
+	stack <TreeNode *> st;
+	do {
 
-	
+		while (root) {
+			if (root->right)
+				st.push(root->right);
+			st.push(root);
+
+			root = root->left;
+		}
+
+		root = st.top();
+		st.pop();
+
+		if (root->right && !st.empty() && st.top() == root->right) {
+			st.pop();
+			st.push(root);
+			root = root->right;
+		}
+		else {
+			cout << root->data << " ";
+			root = NULL;
+		}
+
+	} while (!st.empty());
+
 }
 
 void TraversalUtil::preOrderIterative(TreeNode *root) {
+	if (root == NULL)
+		return;
+	stack <TreeNode *> st;
 
+	while (!st.empty() || root != NULL) {
+		while (root != NULL) {
+			cout << root->data << " ";
+			st.push(root);
+			root = root->left;
+		}
+
+		root = st.top();
+		st.pop();
+		root = root->right;
+	}
 }
 
 void TraversalUtil::InorderIterative(TreeNode *root) {

@@ -19,4 +19,10 @@ int main() {
 
 	cout << "inOrderItr " << endl;
 	TraversalUtil::InorderIterative(root);
+
+	cout << "preOrderItr" << endl;
+	TraversalUtil::preOrderIterative(root);
+
+	cout << "\nPostOrderIt" << endl;
+	TraversalUtil::postOrderIterative(root);
 }
