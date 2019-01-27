@@ -38,6 +38,7 @@ public:
 	static void PostOrderTraversal(TreeNode *root);
 	static void InOrderTraversal(TreeNode *root);
 	static void LevelOrderTraversal(TreeNode *root);
+	static void LevelOrderSpiral(TreeNode *root);
 	static void preOrderIterative(TreeNode *root);
 	static void postOrderIterative(TreeNode *root);
 	static void InorderIterative(TreeNode *root);

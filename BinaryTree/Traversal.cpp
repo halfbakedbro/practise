@@ -63,6 +63,41 @@ void TraversalUtil::LevelOrderTraversal(TreeNode *root) {
 	}
 }
 
+void TraversalUtil::LevelOrderSpiral(TreeNode *root) {
+	if (root == NULL)
+		return;
+	else {
+		stack <TreeNode*> st1, st2;
+
+		st1.push(root);
+
+		while (!st1.empty() || !st2.empty()) {
+			while (!st1.empty()) {
+				root = st1.top();
+				st1.pop();
+				cout << root->data << " ";
+				
+				if (root->left)
+					st2.push(root->left);
+				if (root->right)
+					st2.push(root->right);
+			}
+			cout << endl;
+			while (!st2.empty()) {
+				root = st2.top();
+				st2.pop();
+				cout << root->data << " ";
+
+				if (root->right)
+					st1.push(root->right);
+				if (root->left)
+					st1.push(root->left);
+			}
+			cout << endl;
+		}
+	}
+}
+
 void TraversalUtil::LeftView(TreeNode *root) {
 	if (root == NULL) {
 		return;
@@ -252,9 +287,32 @@ void TraversalUtil::DiagnolTraverse(TreeNode *root) {
 		return;
 	}
 	else {
-		multimap <int, TreeNode*> maps;
-		queue <TreeNode *> que;
-		//que.push()
+		map <int, vector<int> >maps;
+		
+		int hd = 0;
+		queue<pair <TreeNode *, int>> que;
+		que.push(make_pair(root, hd));
+		while (!que.empty()) {
+			pair <TreeNode*, int> temp = que.front();
+			que.pop();
+			hd = temp.second;
+			root = temp.first;
+
+			maps[hd].push_back(root->data);
+
+			if (root->left)
+				que.push(make_pair (root->left, hd - 1));
+			
+			if (root->right)
+				que.push(make_pair(root->right, hd));
+		}
+
+		map <int, vector<int>> ::iterator its;
+		for (its = maps.begin(); its != maps.end(); its++) {
+			for (int i = 0; i < its->second.size(); i++)
+				cout << its->second[i] << " ";
+			cout << endl;
+		}
 	}
 }
 
@@ -285,12 +343,13 @@ void TraversalUtil::VerticalTraverse(TreeNode *root) {
 
 		map < int, vector<int>> ::iterator itr;
 		for (itr = hash.begin(); itr != hash.end(); itr++) {
-			for (int i = 0; i < itr->second.size(); i++)
-				cout << itr->second[i] << " ";
+			//for (int i = 0; i < itr->second.size(); i++)
+			cout << itr->second[0] << " ";
 			cout << endl;
 		}
 	}
 }
+
 
 void OperationUtil::MirrorBinaryTree(TreeNode *root) {
 	if (root == NULL) {

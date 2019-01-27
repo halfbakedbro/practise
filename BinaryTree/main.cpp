@@ -35,10 +35,10 @@ int main() {
 	cout << "\nPostOrderIt" << endl;
 	TraversalUtil::postOrderIterative(root);*/
 	//TraversalUtil::MirrorBinaryTree(root);
-	cout << endl;
+	cout << endl; 
 	//TraversalUtil::BoundaryTraverse(root);
-	//TraversalUtil::LeftView(root);
-	TraversalUtil::VerticalTraverse(root);
+	//TraversalUtil::LeftView(root); 
+	TraversalUtil::DiagnolTraverse(root);
 	cout << endl;
 	//TraversalUtil::RightView(root);
 	//TraversalUtil::InOrderTraversal(root);
